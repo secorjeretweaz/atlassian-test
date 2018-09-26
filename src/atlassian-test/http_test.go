@@ -13,7 +13,7 @@ import (
 
 var (
 	server *httptest.Server
-	reader io.Reader //Ignore this for now
+	reader io.Reader // Ignore this for now
 	url    string
 )
 
