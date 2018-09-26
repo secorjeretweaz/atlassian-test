@@ -9,13 +9,18 @@ import (
 )
 
 // filterHandler
+
 func filterHandler(w http.ResponseWriter, r *http.Request) {
-	// Checking that HTTP method is POST
+	
+		// Checking that HTTP method is POST
+	
 	if r.Method != "POST" {
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
-	// Reading request payload
+	
+		// Reading request payload
+	
 	payload, err := ioutil.ReadAll(r.Body)
 	defer r.Body.Close()
 	if err != nil {
@@ -27,7 +32,9 @@ func filterHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	j := json.NewEncoder(w)
-	// Writing filtered and encoded to JSON response
+	
+		// Writing filtered and encoded to JSON response
+	
 	err = j.Encode(fabric.FilterAll(string(payload)))
 	if err != nil {
 		log.WithError(err).Error("Can't encode JSON and write HTTP response")
